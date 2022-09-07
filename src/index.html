@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>momentum</title>
+</head>
+<body>
+  <header class="header">
+    <div class="player">
+      <div class="player__header">
+        <div class="player__controls">
+          <div class="player__controls_button">
+            <button class="player__controls_item play-prev"></button>
+            <button class="player__controls_item  play"></button>
+            <button class="player__controls_item  play-next"></button>
+          </div>
+          <div class="player__controls_volume">
+            <button class="player__controls_item volume"></button>
+            <input class="volume-range" type="range" name="volume" min="0" max="100" value="50" step="1">
+          </div>
+        </div>
+        <div class="track__infirmation">
+          <div class="track__wrapper">
+            <div class="track-name"></div>
+            <input class="duration" type="range" name="time" min="0" max="" value="0">
+          </div>
+          <div class="track__time">
+            <p class="track-current-time">0:00</p>
+            <span>/</span>
+            <p class="track-duration">0:00</p>
+          </div>
+        </div>
+      </div>
+      <ul class="play-list__wrapper"></ul>
+    </div>
+    <div class="weather">
+      <input class="weather__city" type="text">
+      <i class="weather__icon owf"></i>
+      <div class="weather__error"></div>
+      <div class="weather__description">
+        <span class="weather__description_temperature"></span>
+        <span class="weather-description_condition"></span>
+      </div>
+      <div class="weather__wind"></div>
+      <div class="weather__humidity"></div>
+    </div>
+  </header>
+  <main class="main">
+    <div class="slider__controls">
+      <button class="slider__controls_item slide-prev"></button>
+      <button class="slider__controls_item slide-next"></button>
+    </div>
+    <time class="time"></time>
+    <date class="date"></date>
+    <div class="greeting">
+      <span class="greeting__type"></span>
+      <input class="greeting__name" type="text">
+    </div>
+  </main>
+  <footer class="footer">
+    <button class="change-quote"></button>
+    <div>
+      <div class="quote"></div>
+      <div class="author"></div>
+    </div>
+    <ul class="footer-information">
+      <li>© 2021</li>
+      <li><a class="navigation__link logo" href="https://rs.school/js/" target="_blank"></a></li>
+      <li><a class="navigation__link" href="http://github.com/kate0305" target="_blank">kate0305</a></li>
+    </ul>
+  </footer>
+</body>
+</html>
