@@ -19,7 +19,6 @@ export default () => {
     playListBtn.classList.add('play-list__wrapper_button');
     playListItem.textContent = i.title;
     playListWrapper.append(playListItem);
-    playListBtn.addEventListener('click', playAudio);
     playListItem.prepend(playListBtn);
   });
 
@@ -32,7 +31,6 @@ export default () => {
   let currentTime = 0;
   let mousedown = false;
   let audioDuration;
-
 
   const playAudio = () => {
     if (!isPlay) {
@@ -54,23 +52,24 @@ export default () => {
     }
   }
 
-  const playNext = () => {
+  const clearPlayer = () => {
     playListItems[playNum].classList.remove('active-button');
     playListButtons[playNum].classList.remove('pause');
-    playNum++;
-    playNum === 4 ? playNum = 0 : playNum;
     isPlay = false;
     currentTime = 0;
+  }
+
+  const playNext = () => {
+    clearPlayer();
+    playNum++;
+    playNum === 4 ? playNum = 0 : playNum;
     playAudio();
   }
 
   const playPrev = () => {
-    playListItems[playNum].classList.remove('active-button');
-    playListButtons[playNum].classList.remove('pause');
+    clearPlayer();
     playNum--;
     playNum === -1 ? playNum = 3 : playNum;
-    isPlay = false;
-    currentTime = 0;
     playAudio();
   }
 
@@ -104,13 +103,14 @@ export default () => {
     volume.style.background = `linear-gradient(to right, #989595 0%, #989595 ${(volume.value - volume.min) / (volume.max - volume.min)*100}%, #dee2e6 ${(volume.value - volume.min) / (volume.max - volume.min)*100}%, #dee2e6 100%)`;
   }
 
-  function formatTime(seconds) {
+  const formatTime = (seconds) => {
     let min = Math.floor((seconds / 60));
     let sec = Math.floor(seconds - (min * 60));
     sec < 10 ? sec = `0${sec}` : sec;
     return `${min}:${sec}`;
 };
 
+  setVolume();
   playBtn.addEventListener('click', playAudio);
   prevBtn.addEventListener('click', playPrev);
   nextBtn.addEventListener('click', playNext);
@@ -122,4 +122,9 @@ export default () => {
   progress.addEventListener('mouseup', () => mousedown = false);
   volumeBtn.addEventListener('click', muteVolume);
   volume.addEventListener('mousemove', setVolume);
+  playListButtons.forEach((btn, index) => btn.addEventListener('click', () => {
+    clearPlayer();
+    playNum = index;
+    playAudio();
+  }))
 }
